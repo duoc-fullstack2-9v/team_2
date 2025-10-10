@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background: url('/src/assets/imagenes/muro.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+:root{
+  --color-primario:#a0cabd;
+  --color-accento:#c76161;
+  --color-texto:#333;
+  --color-blanco:#fff;
+  --celeste-hover:#0288d1;
+  --borde:#e5e7eb;
+  --sombra:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.titulo-con-logo {
+  width: 100vw;
+  margin: 0;
+  padding-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.logo-titulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-blanco);
+  padding: 16px 32px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: var(--sombra);
+  width: 100%;
+  justify-content: center;
+  top :auto;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.titulo-texto {
+  font-size: 2rem;
+  color: var(--color-texto);
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--color-blanco);
+  box-shadow: var(--sombra);
+  margin-top: 40px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--color-texto);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.login-btn {
+  background-color: var(--color-primario);
+  color: var(--color-texto);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: background 0.2s;
+}
+
+.login-btn:hover {
+  background-color: var(--celeste-hover);
+  color: #fff;
+}
+
+
+
+.acceso {
+  background: var(--color-blanco);
+  max-width: 300px;
+  margin: 50% auto;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: var(--sombra);
+  text-align: center;
+}
+
+
+
+.acceso-info,
+.info-links {
+  text-align: center;
+  width: 100%;
+}
+
+.footer {
+  background: var(--color-primario);
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
