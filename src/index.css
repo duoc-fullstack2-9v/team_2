@@ -143,3 +143,14 @@ footer {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, .3);
 }
+
+.registro-container{
+    width:100%;
+  padding:.6rem .75rem;
+  margin-bottom:1rem;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:14px;
+  box-sizing: border-box;
+
+}

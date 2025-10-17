@@ -5,8 +5,8 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import esLocale from "@fullcalendar/core/locales/es";
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 
 
 
@@ -19,7 +19,7 @@ function Calendario() {
     { id: "2", title: "Turno", start: "2025-10-14" } // evento día completo
   ]);
 
-  // Crea evento seleccionando en el calendario
+  // Crea evento seleccionando en el calendarios
   const handleDateSelect = (selectInfo) => {
     const title = prompt("Título del evento:");
     const calendarApi = selectInfo.view.calendar;
