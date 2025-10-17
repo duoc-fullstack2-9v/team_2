@@ -20,10 +20,10 @@ function Login() {
                 type="email"
                 id="usuario"
                 name="usuario"
-                placeholder="tucorreo@tuturno.com"
-                title="Ingresa tu correo electrónico"
-                autoComplete="username"
-                required
+                placeholder="tucorreo@tuturno.com" //diga tu correo previo
+                title="Ingresa tu correo electrónico" //cuando te pones encima cn el puntero
+                autoComplete="username" //lo que ya escribi alguna vez
+                required //si o si ingresar
               />
 
               <label htmlFor="password">Contraseña:</label>
@@ -42,7 +42,7 @@ function Login() {
 
             <p>
               ¿No tienes cuenta?{" "}
-              <Link to="/registro" className="enlace">Regístrate aquí</Link>
+              <Link to="/Registro" className="enlace">Regístrate aquí</Link>
             </p>
           </div>
         </main>
