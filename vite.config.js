@@ -11,6 +11,12 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "html"],
+      exclude: [
+        "src/main.jsx",   // ya lo excluiste
+        "tests/**",       // excluye todos los archivos de pruebas
+        "vite.config.js", // excluye configuración de Vite
+        "eslint.config.js",
+      ],
     },
   },
 });

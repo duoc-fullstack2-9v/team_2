@@ -138,14 +138,14 @@ footer {
   max-width: 900px;
   min-height: 600px;
   margin: 0 auto;
-  background: var(--color-blanco);
+  background: white;
   padding: 12px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, .3);
 }
 
 .registro-container{
-    width:100%;
+  width:100%;
   padding:.6rem .75rem;
   margin-bottom:1rem;
   border-radius:10px;
@@ -153,4 +153,107 @@ footer {
   font-size:14px;
   box-sizing: border-box;
 
+}
+
+/* Contenedor fijo 760 x 610 y columna */
+.register-container {
+  width: 760px;
+  height: 610px;
+  margin: 80px auto;
+  padding: 2rem;
+  background: #f6fbff;
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  text-align: left;
+  font-family: "Segoe UI", Arial, sans-serif;
+  display: flex;         /* ← importante */
+  flex-direction: column;
+}
+
+/* Título compacto */
+.register-container h2 {
+  color: rgb(210, 47, 47);
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+/* El formulario ocupa el alto disponible y hace scroll si se necesita */
+.register-container form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* dos columnas */
+  gap: 14px 24px;
+  flex: 1;          /* ← ocupa el espacio vertical disponible */
+  min-height: 0;    /* ← permite que overflow funcione dentro de un flex item */
+  overflow: auto;   /* ← solo el form scrollea, no el container */
+  padding-right: 6px; /* un pelín de espacio para evitar que tape la barra */
+}
+
+/* Cada campo reserva espacio para el error sin empujar nada */
+.register-container .campo {
+  position: relative;          /* ← para posicionar el error */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 20px;        /* ← reserva alto para el mensaje de error */
+}
+
+/* Labels e inputs (mismo look que login) */
+.register-container label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.register-container input,
+.register-container select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.register-container input:focus,
+.register-container select:focus {
+  border-color: #a0cabd;
+  box-shadow: 0 0 5px rgba(160, 202, 189, 0.7);
+}
+
+/* El error va ABSOLUTO al fondo del campo, no empuja el layout */
+.error-msg {
+  position: absolute;
+  left: 0;
+  bottom: 0;            /* ← queda “pegado” abajo dentro del campo */
+  color: #e74c3c;
+  font-size: 0.85rem;
+  line-height: 1.1;
+}
+
+/* Botón y el texto inferior ocupan ambas columnas */
+.register-container button[type="submit"],
+.register-container p {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+
+.register-container button[type="submit"] {
+  background-color: rgb(210, 47, 47);
+  color: #fffefe;
+  padding: 0.7rem 2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s, transform 0.05s;
+}
+.register-container button[type="submit"]:hover,
+.register-container button[type="submit"]:focus {
+  background-color: #a0cabd;
+  color: black;
+}
+.register-container button[type="submit"]:active {
+  transform: scale(.98);
 }
