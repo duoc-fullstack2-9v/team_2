@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /*home*/
 main {
   margin: 0;
@@ -37,7 +43,7 @@ nav {
   display: flex;
   align-items: center;         /* Centra verticalmente logo y texto */
   justify-content: center;     /* Centra todo horizontalmente */
-  padding: 20px;
+  padding: 10px;
   gap: 15px;
 
   img {
@@ -89,7 +95,7 @@ nav {
 /*footer*/
 footer {
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   font-size: 16px;
   background-color: #a0cabd;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -99,19 +105,25 @@ footer {
 .login-container{
   max-width:350px;
   margin:80px 80px;
-  padding:2rem;
+  padding:2.5rem;
   background:#f6fbff;
   border-radius:20px;
   box-shadow:var(--sombra);
   text-align:center;
+
+
 }
-.login-container h2{ color: rgb(210, 47, 47); margin-bottom:1rem; }
-.login-container label{ display:block; margin:.7rem 0 .2rem; text-align:left; }
+
+.login-container p {
+  margin-top: 1.5rem;  /* crea espacio sobre el texto de “Regístrate” */
+}
+.login-container h2{ color: rgb(210, 47, 47); margin-bottom:2rem; }
+.login-container label{ display:block; margin:.7rem rem; text-align:left; }
 .login-container input,
 
 .login-container select{
   width:100%;
-  padding:.6rem .75rem;
+  padding:.8rem .75rem;
   margin-bottom:1rem;
   border-radius:10px;
   border:1px solid #ccc;
@@ -128,11 +140,19 @@ footer {
   font-size:1rem;
   transition:background-color .2s, transform .05s;
   text-decoration: none;
+
+
 }
 .entrar:hover{ background-color:#a0cabd; color:black; }
 .entrar:focus{ background-color:#a0cabd; color:black; }
 .entrar:active{ transform:scale(.98); }
 
+/* Bloque de registro: separado y centrado */
+.register-text {
+  margin-top: 2rem;     /* separa del formulario */
+  font-size: 0.95rem;
+  text-align: center;
+}
 /*Calendario*/
 .calendario{
   max-width: 900px;
@@ -153,16 +173,19 @@ footer {
   font-size:14px;
   box-sizing: border-box;
 
+
 }
 
 /* Contenedor fijo 760 x 610 y columna */
 .register-container {
-  width: 760px;
-  height: 610px;
+  width: 700px;
+  height: 600px;
   margin: 80px auto;
-  padding: 2rem;
+  padding: 1rem;
   background: #f6fbff;
   border-radius: 20px;
+ 
+  
   box-shadow: var(--sombra);
   text-align: left;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -242,12 +265,14 @@ footer {
 .register-container button[type="submit"] {
   background-color: rgb(210, 47, 47);
   color: #fffefe;
-  padding: 0.7rem 2rem;
+  width: 300px; 
+  padding: 0.7rem 0;
   border: none;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.2s, transform 0.05s;
+  margin: 0 auto; /* centra el botón */
 }
 .register-container button[type="submit"]:hover,
 .register-container button[type="submit"]:focus {
@@ -256,4 +281,178 @@ footer {
 }
 .register-container button[type="submit"]:active {
   transform: scale(.98);
+}
+.right-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;          /* ocupa todo el alto */
+  width: 250px;           /* ancho del panel */
+  background-color: #fff; /* fondo blanco */
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem 1rem;
+  z-index: 100;           /* por encima del contenido */
+}
+
+/* Título dentro del panel */
+.right-container h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
+
+/* Área del contenido: solo reserva espacio a la derecha */
+.cal-wrapper {
+  padding: 1rem;
+  padding-right: 250px; /* igual al ancho del panel */
+}
+
+/* Caja que centra y compacta el calendario */
+.cal-box {
+  max-width: 800px;   /* límite de ancho cómodo */
+  margin: 0 auto;     /* centra */
+}
+
+/* El div que envuelve FullCalendar */
+.calendario { width: 100%; }
+
+/* Por si quedó algún alto forzado en otro lado */
+.calendario, .calendario .fc {
+  height: auto !important;
+}
+
+
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgb(210, 47, 47);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  z-index: 120;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #a73838;
+}
+
+/* Panel lateral (por defecto oculto) */
+.right-container {
+  position: fixed;
+  top: 0;
+  right: -320px; /* oculto fuera de la pantalla */
+  height: 100vh;
+  width: 320px;
+  background: #fff;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  z-index: 110;
+  transition: right 0.3s ease;
+}
+
+/* Cuando se abre */
+.right-container.open {
+  right: 0;
+}
+
+/* Título dentro del panel */
+.right-container h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.turnos-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px); /* para que no desborde el panel */
+}
+
+.turnos-lista li {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+}
+
+.turnos-lista li:hover {
+  background-color: #f1f1f1;
+}
+
+.right-container h2 {
+  text-align: left;         
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Botón para abrir/cerrar el panel */
+.toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #183eda;   
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2.2rem;
+  cursor: pointer;
+  z-index: 120;
+  font-weight: 600;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+.toggle-btn.open {
+  background-color: rgb(210, 47, 47); /* rojo */
+}
+
+/* Panel lateral (desplegable) */
+.right-container{
+  position: fixed; top: 0; right: -320px; /* oculto por defecto */
+  height: 100vh; width: 320px; z-index: 110;
+  background: #fff; box-shadow: -10px 0 30px rgba(0,0,0,.08);
+  display: flex; flex-direction: column; padding: 1.5rem 1rem;
+  transition: right .3s ease;
+}
+.right-container.open{ right: 0; }
+
+/* Botón "Cerrar sesión" dentro del panel */
+.logout-btn{
+  display: block; width: 100%;
+  background: rgb(210,47,47); color: #fff; border: 0; border-radius: 8px;
+  padding: .6rem 0; font-weight: 600; margin: .5rem 0 1rem 0; cursor: pointer;
 }
