@@ -3,13 +3,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
+import { authApi } from "../services/api";
+
+
+
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RUT_RE = /^[0-9]{7,8}$/;
 const PASS_RE = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
+
 export default function Registro() {
   const navigate = useNavigate();
+
 
   const [form, setForm] = useState({
     nombre: "",
@@ -22,8 +28,10 @@ export default function Registro() {
     confirmarClave: "",
   });
 
+
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+
 
   const validateField = (id, value, all = form) => {
     switch (id) {
@@ -63,6 +71,7 @@ export default function Registro() {
     }
   };
 
+
   const validateForm = (values) => {
     const e = {};
     Object.keys(values).forEach((k) => {
@@ -71,6 +80,7 @@ export default function Registro() {
     });
     return e;
   };
+
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -88,36 +98,62 @@ export default function Registro() {
     });
   };
 
+
   const handleBlur = (e) => {
     const { id } = e.target;
     setTouched((t) => ({ ...t, [id]: true }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // Validación HTML5 (required/type/pattern) visual
-    const formEl = e.currentTarget;
-    if (!formEl.checkValidity()) {
-      formEl.reportValidity();
-      return;
-    }
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validación personalizada completa
-    const allErrors = validateForm(form);
-    setErrors(allErrors);
-    setTouched(
-      Object.fromEntries(Object.keys(form).map((k) => [k, true]))
-    );
 
-    if (Object.keys(allErrors).length > 0) return;
+  const formEl = e.currentTarget;
+  if (!formEl.checkValidity()) {
+    formEl.reportValidity();
+    return;
+  }
 
-    navigate("/calendario");
-  };
+
+  const allErrors = validateForm(form);
+  setErrors(allErrors);
+  setTouched(
+    Object.fromEntries(Object.keys(form).map((k) => [k, true]))
+  );
+
+
+  if (Object.keys(allErrors).length > 0) return;
+
+
+  // Si llega aquí, el formulario es válido → llamamos al backend
+  try {
+    const payload = {
+      nombre: form.nombre,
+      apellido: form.apellido,
+      rut: form.rut,
+      sexo: form.sexo,
+      edad: Number(form.edad),
+      correo: form.correo,
+      password: form.clave, // IMPORTANTE: debe llamarse igual que en RegisterRequest
+    };
+
+
+    await authApi.registro(payload);
+
+
+    alert("Usuario registrado correctamente. Ahora puedes iniciar sesión.");
+    navigate("/login");
+  } catch (err) {
+    alert(`Error al registrar usuario: ${err.message}`);
+  }
+};
+
 
   const hasErrors = Object.values(errors).some(Boolean);
   const someEmpty = Object.values(form).some((v) => String(v).trim() === "");
   const canSubmit = !hasErrors && !someEmpty;
+
 
   return (
     <>
@@ -125,6 +161,7 @@ export default function Registro() {
       <main>
         <div className="register-container">
           <h2>Registro de Usuario</h2>
+
 
           <form id="registro" onSubmit={handleSubmit} noValidate>
             <div className="campo">
@@ -143,6 +180,7 @@ export default function Registro() {
               {touched.nombre && errors.nombre && <small className="error-msg">{errors.nombre}</small>}
             </div>
 
+
             <div className="campo">
               <label htmlFor="apellido">Apellido:</label>
               <input
@@ -158,6 +196,7 @@ export default function Registro() {
               />
               {touched.apellido && errors.apellido && <small className="error-msg">{errors.apellido}</small>}
             </div>
+
 
             <div className="campo">
               <label htmlFor="rut">Rut:</label>
@@ -177,6 +216,7 @@ export default function Registro() {
               />
               {touched.rut && errors.rut && <small className="error-msg">{errors.rut}</small>}
             </div>
+
 
             <div className="campo">
               <label htmlFor="sexo">Sexo:</label>
@@ -198,6 +238,7 @@ export default function Registro() {
               {touched.sexo && errors.sexo && <small className="error-msg">{errors.sexo}</small>}
             </div>
 
+
             <div className="campo">
               <label htmlFor="edad">Edad:</label>
               <input
@@ -215,6 +256,7 @@ export default function Registro() {
               />
               {touched.edad && errors.edad && <small className="error-msg">{errors.edad}</small>}
             </div>
+
 
             <div className="campo">
               <label htmlFor="correo">Correo electrónico:</label>
@@ -234,6 +276,7 @@ export default function Registro() {
               />
               {touched.correo && errors.correo && <small className="error-msg">{errors.correo}</small>}
             </div>
+
 
             <div className="campo">
               <label htmlFor="clave">Contraseña:</label>
@@ -255,6 +298,7 @@ export default function Registro() {
               {touched.clave && errors.clave && <small className="error-msg">{errors.clave}</small>}
             </div>
 
+
             <div className="campo">
               <label htmlFor="confirmarClave">Confirmar contraseña:</label>
               <input
@@ -275,9 +319,11 @@ export default function Registro() {
               )}
             </div>
 
+
             <button type="submit" className="entrar" disabled={!canSubmit}>
               Registrarse
             </button>
+
 
             <p>
               ¿Ya tienes cuenta?{" "}
