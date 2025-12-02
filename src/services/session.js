@@ -5,7 +5,7 @@ const KEY = "tuturnoUser";
 export function saveUserSession(payload) {
   // El backend manda { token, usuarioId, nombre, rol }
   const { token, nombre, rol } = payload;
-  const id = payload.id ?? payload.usuarioId; // por si después lo cambias a "id"
+  const id = payload.id ?? payload.usuarioId;
 
 
   const data = { id, nombre, rol, token };
